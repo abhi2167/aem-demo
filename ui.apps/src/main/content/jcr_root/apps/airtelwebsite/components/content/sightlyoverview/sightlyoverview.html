@@ -1,0 +1,53 @@
+Sightly Overview
+<sly data-sly-use.wcmDemo="com.airtel.airtelwebsite.core.wcm.WcmApiDemo"></sly>
+<div data-sly-test="${wcmmode.edit}">
+	Edit Mode
+</div>
+
+<!-- Instead of using Div tag which would add additional div in markup, we can use data-sly-unwrap -->
+<div data-sly-test="${wcmmode.preview}" data-sly-unwrap>
+	Preview Mode
+</div>
+
+
+<!-- Instead of using Div tag which would add additional div in markup, we can use Sly tag -->
+<sly data-sly-test.result="${wcmmode.disabled}">
+    Is Disabled Mode: ${result}
+</sly>
+
+
+<ul data-sly-list.obj="${currentPage.listChildren}">
+    <li>Title of page :: ${obj.title}</li>
+</ul>
+
+
+<template data-sly-template.inlineTmpl>
+        <div> Page Inline Template </div>
+</template>
+
+<br>
+
+<sly data-sly-call="${inlineTmpl}"></sly>
+
+<br>
+<sly data-sly-use.extTmpl="templateLib.html">
+        <sly data-sly-call="${extTmpl.blockTmpl}"></sly>
+</sly>
+
+<div>
+	Dialog Text :: ${wcmDemo.formattedText}
+</div>
+
+<div data-sly-list.key="${wcmDemo.currentResourceProps}">
+	<br>KEY :: ${key}  VALUE :: ${wcmDemo.currentResourceProps[key]}
+</div>
+<br>
+External Resource Property :: ${wcmDemo.externalResourceProp}
+
+<br>
+
+Current Page Title :: ${wcmDemo.currentPageTitle}
+<br>
+External Page Title :: ${wcmDemo.extPageTitle}
+
+<h3> JCR NODE API </h3>
