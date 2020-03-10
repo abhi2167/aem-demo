@@ -1,0 +1,40 @@
+<sly data-sly-use.multiFieldDemo="com.airtel.airtelwebsite.core.wcm.MultifieldDemo">
+<div class="tile-list">
+	<!--
+        <div class="container">
+            <sly data-sly-list="${resource.children}">
+                <sly data-sly-list.childItem = "${item.children}">
+                    <div class="tile-box tile-box-hover">
+                        <div class="row no-gutters">
+                            <div class="col-1 imageBox">
+                            <img src="${childItem.imagepath}"/>
+                            </div>
+                            <div class="col-11 contetntBoxPadding">
+                                    <div class="col box-title">${childItem.title}</div>
+                                    <div class="w-100 d-block"></div>
+                                    <div class="col"><p>${childItem.description}</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </sly>
+            </sly>
+        </div>
+	-->
+
+    <div class="container">
+            <sly data-sly-list="${multiFieldDemo.multifieldItems}">
+                    <div class="tile-box tile-box-hover">
+                        <div class="row no-gutters">
+                            <div class="col-1 imageBox">
+                            <img src="${item.imagepath}"/>
+                            </div>
+                            <div class="col-11 contetntBoxPadding">
+                                    <div class="col box-title">${item.title}</div>
+                                    <div class="w-100 d-block"></div>
+                                    <div class="col"><p>${item.description}</p></div>
+                            </div>
+                        </div>
+                    </div>
+            </sly>
+        </div>
+</div>
