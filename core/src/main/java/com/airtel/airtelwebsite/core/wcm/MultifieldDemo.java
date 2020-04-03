@@ -11,23 +11,27 @@ import javax.jcr.RepositoryException;
 import javax.jcr.ValueFormatException;
 
 import org.apache.sling.api.resource.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.adobe.cq.sightly.WCMUsePojo;
 import com.airtel.airtelwebsite.wcm.beans.MultifieldItem;
 
 public class MultifieldDemo extends WCMUsePojo {
 
+	private static Logger logger = LoggerFactory.getLogger(MultifieldDemo.class);
 	private List<MultifieldItem> multifieldItems = new ArrayList<>();
 	
 	@Override
 	public void activate() throws Exception {
 		
-		//populateListUsingSling();
-		populateListUsingJCR();
+		populateListUsingSling();
+		//populateListUsingJCR();
 
 	}
 
 	private void populateListUsingJCR() throws PathNotFoundException, ValueFormatException, RepositoryException {
-		
+		logger.debug("populating list using JCR API");
 		Node multiFieldParentNode = getResource().adaptTo(Node.class);
 		if(multiFieldParentNode.hasNode("multifield")) {
 			Node multiFieldNode = multiFieldParentNode.getNode("multifield");
@@ -51,7 +55,7 @@ public class MultifieldDemo extends WCMUsePojo {
 	}
 
 	private void populateListUsingSling() {
-		
+		logger.debug("populating list using Sling API");
 		Resource multiField = getResource().getChild("multifield");
 		Iterator<Resource> resourceItems = multiField.listChildren();
 		

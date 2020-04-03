@@ -11,6 +11,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 
 import com.adobe.cq.sightly.WCMUsePojo;
+import com.airtel.airtelwebsite.core.service.MathService;
 import com.day.cq.wcm.api.Page;
 
 public class WcmApiDemo extends WCMUsePojo {
@@ -21,9 +22,15 @@ public class WcmApiDemo extends WCMUsePojo {
 	private String currentPageTitle;
 	private String extPageTitle;
 	private String jcrNodeProp;
+	private int totalValue;
 	
 	@Override
 	public void activate() throws Exception {
+		// Calling OSGI Service
+		MathService mathService = getSlingScriptHelper().getService(MathService.class);
+		totalValue = mathService.calculateValue();
+		
+		
 		formattedText = getProperties().get("textField", String.class).toUpperCase();
 		
 		ValueMap valueMap = getResource().adaptTo(ValueMap.class);
@@ -84,6 +91,9 @@ public class WcmApiDemo extends WCMUsePojo {
 	public String getJcrNodeProp() {
 		return jcrNodeProp;
 	}
-	
+
+	public int getTotalValue() {
+		return totalValue;
+	}
 	
 }
